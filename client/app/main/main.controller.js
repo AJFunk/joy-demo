@@ -28,7 +28,7 @@ export default class MainController {
     )
     this.Post.create(newPost)
       .then(res => {
-        this.posts.unshift(angular.copy(newPost))
+        this.posts.unshift(res)
         this.addingPost = false;
       })
       .catch(err => console.log(err));
