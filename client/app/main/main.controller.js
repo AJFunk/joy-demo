@@ -7,12 +7,13 @@ export default class MainController {
   post = null;
 
   /*@ngInject*/
-  constructor(currentUser, Post, posts) {
-    Object.assign(this, { currentUser, Post, posts })
+  constructor(currentUser, Post, posts, alertify) {
+    Object.assign(this, { currentUser, Post, posts, alertify })
     //this.newPost.author = currentUser._id;
     this.hideImage = this.hideImage.bind(this);
     this.upload = this.upload.bind(this);
     this.toggleAddPost = this.toggleAddPost.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   toggleAddPost() {
@@ -41,6 +42,22 @@ export default class MainController {
   hideImage() {
     this.viewing = false;
     this.post = {};
+  }
+
+  delete() {
+    this.alertify.confirm(
+      'Are you sure you want to delete this post?',
+      () => {
+        this.Post.delete(this.post._id)
+          .then(res => {
+            this.posts = this.posts.filter(p => p._id !== this.post._id)
+            this.hideImage();
+          })
+          .catch(err => console.log(err));
+      },
+      () => {
+        // do nothing
+      });
   }
 
 }

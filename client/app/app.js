@@ -24,11 +24,14 @@ import constants from './app.constants';
 import util from '../components/util/util.module';
 import imageViewer from '../components/image-viewer';
 import createPost from '../components/create-post';
+import 'alertify.js/dist/js/ngAlertify.js'; // 'ngAlertify'
 
 import './app.scss';
+import 'sweetalert/dist/sweetalert.css';
 
 angular.module('joyDemoApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  api, account, 'validation.match', navbar, footer, main, constants, util, imageViewer, createPost
+  api, account, 'validation.match', navbar, footer, main, constants, util, imageViewer, createPost,
+  'ngAlertify'
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

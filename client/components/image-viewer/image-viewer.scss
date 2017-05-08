@@ -21,6 +21,7 @@ image-viewer {
     background: #FFF;
     img {
       width: 75%;
+      max-height: 100%;
     }
     .caption {
       vertical-align: top;

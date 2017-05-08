@@ -5,7 +5,7 @@ export function PostService($http, $q) {
 
   const Post = {
 
-    fetch: (id) =>
+    fetch: id =>
       $http
         .get(`/api/posts/${id}`)
         .then( res => res.data )
@@ -23,9 +23,9 @@ export function PostService($http, $q) {
         .then( res => res.data )
         .catch( err => $q.reject(err.data) ),
 
-    update: (id, patches) =>
+    delete: id =>
       $http
-        .patch(`/api/posts/${id}`, patches)
+        .delete(`/api/posts/${id}`)
         .then( res => res.data )
         .catch( err => $q.reject(err.data) ),
 

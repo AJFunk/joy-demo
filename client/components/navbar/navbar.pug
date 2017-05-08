@@ -6,15 +6,10 @@ div.navbar.navbar-default.navbar-static-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') joy-demo
+      a.navbar-brand(href='/') Joy Demo
 
     div#navbar-main.navbar-collapse.collapse(uib-collapse='$ctrl.isCollapsed')
       ul.nav.navbar-nav
-        li(ng-repeat='item in $ctrl.menu', ui-sref-active='active')
-          a(ui-sref='{{item.state}}') {{item.title}}
-
-        li(ng-show='$ctrl.isAdmin()', ui-sref-active='active')
-          a(ui-sref='admin') Admin
 
       ul.nav.navbar-nav.navbar-right
         li(ng-hide='$ctrl.isLoggedIn()', ui-sref-active='active')
@@ -24,7 +19,7 @@ div.navbar.navbar-default.navbar-static-top
           a(ui-sref='login') Login
 
         li(ng-show='$ctrl.isLoggedIn()')
-          p.navbar-text Hello {{ $ctrl.getCurrentUser().name }}
+          p.navbar-text Hello, {{ $ctrl.getCurrentUser().name }}
 
         li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
           a(ui-sref='settings')

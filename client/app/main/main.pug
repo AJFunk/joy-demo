@@ -1,22 +1,20 @@
 .main-wrap
   .container
-    .row
-      button.btn.btn-primary(ng-click='vm.toggleAddPost()' ng-hide='vm.addingPost') New Post
-
-  .container
-    .row
-      .col-md-6
-        img.avatar(ng-src='//api.adorable.io/avatar/75/{{vm.currentUser._id}}')
-      .col-md-6
+    .row.header
+      .col-sm-4.text-center
+        img.avatar(ng-src='//api.adorable.io/avatar/150/{{vm.currentUser._id}}')
+      .col-sm-8
         h2 {{vm.currentUser.name}}
+        h5 {{vm.posts.length}} posts
+        p Here's your bio. Too bad you can't change it! You're stuck with this one.
+        button.btn.btn-primary(ng-click='vm.toggleAddPost()' ng-hide='vm.addingPost') New Post
 
     .row
       .col-sm-4.text-center(ng-repeat='post in vm.posts')
         .post
           .overlay(ng-click='vm.viewImage(post)')
           img(ng-src='{{post.imageUrl}}')
-      div(ng-if='!vm.posts.length')
-        h4 You have not added any posts!
+      h3.text-center(ng-if='!vm.posts.length') You have not added any posts!
 
-image-viewer(post='vm.post' hide='vm.hideImage' ng-if='vm.viewing')
+image-viewer(post='vm.post' hide='vm.hideImage' delete='vm.delete' ng-if='vm.viewing')
 create-post(upload='vm.upload' cancel='vm.toggleAddPost' ng-if='vm.addingPost')
