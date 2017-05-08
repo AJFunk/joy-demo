@@ -15,6 +15,7 @@ import {
 } from './app.config';
 
 import _Auth from '../components/auth/auth.module';
+import api from '../components/api/api.module';
 import account from './account';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
@@ -25,7 +26,7 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('joyDemoApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, 'validation.match', navbar, footer, main, constants, util
+  api, account, 'validation.match', navbar, footer, main, constants, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
@@ -35,6 +36,7 @@ angular.module('joyDemoApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBoo
     $rootScope.$on('$stateChangeStart', function(event, next) {
       Auth.isLoggedIn(function(loggedIn) {
         if(next.authenticate && !loggedIn) {
+          console.log("HERE");
           $location.path('/login');
         }
       });

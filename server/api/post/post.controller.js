@@ -61,6 +61,13 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+export function mine(req, res) {
+  console.log("INSIDE");
+  return Post.find({ author: req.user._id }).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Gets a single Post from the DB
 export function show(req, res) {
   return Post.findById(req.params.id).exec()
