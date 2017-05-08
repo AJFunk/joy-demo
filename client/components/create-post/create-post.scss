@@ -1,0 +1,31 @@
+create-post {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9998;
+  }
+  .create-post-wrapper {
+    z-index: 9999;
+    position: fixed;
+    top: 25%;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    height: 50%;
+    background: #FFF;
+    // img {
+    //   width: 75%;
+    // }
+    // .caption {
+    //   vertical-align: top;
+    //   display: inline-block;
+    //   padding: 5px;
+    // }
+  }
+}

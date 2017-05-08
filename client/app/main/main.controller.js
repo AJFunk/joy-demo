@@ -3,38 +3,44 @@
 export default class MainController {
 
   addingPost = false;
-  newPost = {
-    imageUrl: '',
-    caption: '',
-    author: null
-  };
+  viewing = false;
+  post = null;
 
   /*@ngInject*/
   constructor(currentUser, Post, posts) {
     Object.assign(this, { currentUser, Post, posts })
-    this.newPost.author = currentUser._id;
-  }
-
-  $onInit() {
-    console.log("HERE", this);
+    //this.newPost.author = currentUser._id;
+    this.hideImage = this.hideImage.bind(this);
+    this.upload = this.upload.bind(this);
+    this.toggleAddPost = this.toggleAddPost.bind(this);
   }
 
   toggleAddPost() {
     this.addingPost = !this.addingPost;
   }
 
-  upload() {
-    console.log(this.newPost)
-    this.Post.create(this.newPost)
+  upload(post) {
+    const newPost = Object.assign(
+      {},
+      post,
+      { author: this.currentUser._id }
+    )
+    this.Post.create(newPost)
       .then(res => {
-        this.posts.unshift(angular.copy(this.newPost))
-        this.newPost.imageUrl = '';
-        this.newPost.caption = '';
+        this.posts.unshift(angular.copy(newPost))
         this.addingPost = false;
-        console.log(res)
       })
       .catch(err => console.log(err));
   }
 
+  viewImage(post) {
+    this.post = post;
+    this.viewing = true;
+  }
+
+  hideImage() {
+    this.viewing = false;
+    this.post = {};
+  }
 
 }

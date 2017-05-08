@@ -1,0 +1,6 @@
+.overlay(ng-click='cancel()')
+.create-post-wrapper
+  input(type='text' placeholder='Image URL' ng-model='post.imageUrl')
+  textarea(placeholder='Caption...' ng-model='post.caption')
+  button.btn.btn-primary(ng-click='upload(post)') Save
+  button.btn.btn-danger(ng-click='cancel()') Cancel

@@ -1,25 +1,22 @@
-.container
-  .row
-    button.btn.btn-primary(ng-click='vm.toggleAddPost()' ng-hide='vm.addingPost') New Post
-    .addingPost(ng-show='vm.addingPost')
-      input(type='text' placeholder='Image URL' ng-model='vm.newPost.imageUrl')
-      textarea(placeholder='Caption...' ng-model='vm.newPost.caption')
-      button.btn.btn-primary(ng-click='vm.upload()') Save
-      button.btn.btn-danger(ng-click='vm.toggleAddPost()') Cancel
+.main-wrap
+  .container
+    .row
+      button.btn.btn-primary(ng-click='vm.toggleAddPost()' ng-hide='vm.addingPost') New Post
 
+  .container
+    .row
+      .col-md-6
+        img.avatar(ng-src='//api.adorable.io/avatar/75/{{vm.currentUser._id}}')
+      .col-md-6
+        h2 {{vm.currentUser.name}}
 
+    .row
+      .col-sm-4.text-center(ng-repeat='post in vm.posts')
+        .post
+          .overlay(ng-click='vm.viewImage(post)')
+          img(ng-src='{{post.imageUrl}}')
+      div(ng-if='!vm.posts.length')
+        h4 You have not added any posts!
 
-.container
-  .row
-    .col-md-6
-      img.avatar(ng-src='//api.adorable.io/avatar/75/{{vm.currentUser._id}}')
-    .col-md-6
-      h2 {{vm.currentUser.name}}
-
-  .row
-    .col-md-3(ng-repeat='post in vm.posts')
-      .post
-        img(ng-src='{{post.imageUrl}}')
-        p {{post.caption}}
-    div(ng-if='!vm.posts.length')
-      h4 You have not added any posts!
+image-viewer(post='vm.post' hide='vm.hideImage' ng-if='vm.viewing')
+create-post(upload='vm.upload' cancel='vm.toggleAddPost' ng-if='vm.addingPost')

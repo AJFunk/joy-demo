@@ -63,7 +63,8 @@ export function index(req, res) {
 
 export function mine(req, res) {
   console.log("INSIDE");
-  return Post.find({ author: req.user._id }).exec()
+  return Post.find({ author: req.user._id })
+    .sort('-createdAt')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
